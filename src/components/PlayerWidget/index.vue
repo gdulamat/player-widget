@@ -1,7 +1,7 @@
 <template>
   <div class="widget-wrapp">
-    <player-view />
-    <playlist-view />
+    <player-view v-if="showPlayer" />
+    <playlist-view v-else />
   </div>
 </template>
 
@@ -20,7 +20,8 @@ export default {
   },
   data() {
     return {
-      tracks: []
+      tracks: [],
+      showPlayer: true
     };
   },
   created() {
