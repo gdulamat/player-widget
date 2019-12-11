@@ -2,7 +2,7 @@
   <button
     class="btn"
     :class="[size === 'l' ? 'l-size' : '']"
-    :style="{ backgroundColor: color }"
+    :style="{ backgroundColor: bgColor }"
   >
     <img :src="icon" />
   </button>
@@ -14,7 +14,7 @@ export default {
   props: {
     icon: String,
     size: String,
-    color: {
+    bgColor: {
       type: String,
       default: "#ffffff"
     }
@@ -32,6 +32,7 @@ export default {
 .btn {
   width: 36px;
   height: 36px;
+  border: none;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -39,9 +40,6 @@ export default {
   filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.1));
   cursor: pointer;
   transition: transform 0.3s ease-out;
-  &:hover {
-    transform: scale(1.1);
-  }
   &.l-size {
     width: 50px;
     height: 50px;

@@ -1,7 +1,26 @@
 <template>
-  <div class="widget-wrapp">
-    <player-view v-if="showPlayer" />
-    <playlist-view v-else />
+  <div class="widget-wrapp" v-if="tracks.length">
+    <player-view
+      v-if="showPlayer"
+      :tracks="tracks"
+      :activeTrack="activeTrack"
+      @prevTrack="
+        activeTrackIndex === 0
+          ? (activeTrackIndex = tracks.length - 1)
+          : activeTrackIndex--
+      "
+      @nextTrack="
+        activeTrackIndex === tracks.length - 1
+          ? (activeTrackIndex = 0)
+          : activeTrackIndex++
+      "
+      @togglePlaylist="showPlayer = !showPlayer"
+    />
+    <playlist-view
+      v-else
+      :tracks="tracks"
+      @togglePlaylist="showPlayer = !showPlayer"
+    />
   </div>
 </template>
 
@@ -21,8 +40,14 @@ export default {
   data() {
     return {
       tracks: [],
+      activeTrackIndex: 0,
       showPlayer: true
     };
+  },
+  computed: {
+    activeTrack() {
+      return this.tracks[this.activeTrackIndex];
+    }
   },
   created() {
     fetch("https://cors-anywhere.herokuapp.com/" + this.url, {
