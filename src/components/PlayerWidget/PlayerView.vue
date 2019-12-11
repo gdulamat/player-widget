@@ -35,7 +35,7 @@
           <control-btn
             @click.native="handlePlayPause"
             :icon="isPlaying ? playIcon : pauseIcon"
-            :size="'l'"
+            :size="'50px'"
             :bgColor="'#60558f'"
           />
           <control-btn
@@ -107,6 +107,10 @@ h6 {
   margin: 6px 0 0 0;
   font-size: 14px;
   font-weight: 400;
+}
+.player {
+  position: relative;
+  z-index: 100;
 }
 .cover-box {
   height: 340px;

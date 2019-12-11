@@ -1,7 +1,6 @@
 <template>
   <div class="widget-wrapp" v-if="tracks.length">
     <player-view
-      v-if="showPlayer"
       :tracks="tracks"
       :activeTrack="activeTrack"
       @prevTrack="
@@ -14,12 +13,13 @@
           ? (activeTrackIndex = 0)
           : activeTrackIndex++
       "
-      @togglePlaylist="showPlayer = !showPlayer"
+      @togglePlaylist="showPlaylist = !showPlaylist"
     />
     <playlist-view
-      v-else
       :tracks="tracks"
-      @togglePlaylist="showPlayer = !showPlayer"
+      :open="showPlaylist"
+      @togglePlaylist="showPlaylist = !showPlaylist"
+      @chooseTrack="chooseTrack"
     />
   </div>
 </template>
@@ -41,12 +41,18 @@ export default {
     return {
       tracks: [],
       activeTrackIndex: 0,
-      showPlayer: true
+      showPlaylist: false
     };
   },
   computed: {
     activeTrack() {
       return this.tracks[this.activeTrackIndex];
+    }
+  },
+  methods: {
+    chooseTrack(e) {
+      this.activeTrackIndex = e;
+      this.showPlaylist = false;
     }
   },
   created() {
@@ -61,15 +67,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-a {
-  color: #42b983;
-}
-
 .widget-wrapp {
   width: 360px;
   height: 480px;
   background-color: #f3f4f8;
   border-radius: 30px;
+  position: relative;
   box-shadow: 0px 33px 60px -25px rgba(0, 0, 0, 0.6);
   overflow: hidden;
 }

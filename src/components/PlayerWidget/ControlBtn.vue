@@ -1,8 +1,7 @@
 <template>
   <button
     class="btn"
-    :class="[size === 'l' ? 'l-size' : '']"
-    :style="{ backgroundColor: bgColor }"
+    :style="{ backgroundColor: bgColor, width: size, height: size }"
   >
     <img :src="icon" />
   </button>
@@ -13,15 +12,13 @@ export default {
   name: "ControlBtn",
   props: {
     icon: String,
-    size: String,
+    size: {
+      type: String,
+      default: "36px"
+    },
     bgColor: {
       type: String,
       default: "#ffffff"
-    }
-  },
-  methods: {
-    comoon: function() {
-      console.log("click");
     }
   }
 };
@@ -30,8 +27,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .btn {
-  width: 36px;
-  height: 36px;
   border: none;
   border-radius: 50%;
   display: flex;
@@ -40,9 +35,8 @@ export default {
   filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.1));
   cursor: pointer;
   transition: transform 0.3s ease-out;
-  &.l-size {
-    width: 50px;
-    height: 50px;
+  &:hover, &:focus {
+    transform: scale(1.1);
   }
 }
 </style>
