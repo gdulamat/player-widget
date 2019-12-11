@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19 18" width="19" height="18">
+	<style>
+		tspan { white-space:pre }
+		.shp0 { fill: #ffffff } 
+	</style>
+	<g id="Player">
+		<g id="Top  options">
+			<path id="refresh 4" class="shp0" d="M14.94 11.6L4.97 11.6L4.97 9.44L1.5 12.86L4.97 16.28L4.97 14.12L17.5 14.12L17.5 13.53L17.5 11.6L17.5 7.29L14.94 9.81L14.94 11.6ZM4.06 5.97L14.03 5.97L14.03 8.13L17.5 4.7L14.03 1.28L14.03 3.44L1.5 3.44L1.5 10.27L4.06 7.75L4.06 5.97Z" />
+		</g>
+	</g>
+</svg>

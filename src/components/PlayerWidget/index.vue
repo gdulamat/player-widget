@@ -1,21 +1,34 @@
 <template>
   <div class="widget-wrapp">
-    <h1>{{ msg }}</h1>
+    <player-view />
+    <playlist-view />
   </div>
 </template>
 
 <script>
+import PlayerView from "@/components/PlayerWidget/PlayerView.vue";
+import PlaylistView from "@/components/PlayerWidget/PlaylistView.vue";
+
 export default {
-  name: "HelloWorld",
+  name: "PlayerWidget",
+  components: {
+    PlayerView,
+    PlaylistView
+  },
   props: {
-    msg: String
+    url: String
+  },
+  data() {
+    return {
+      tracks: []
+    };
   },
   created() {
-    fetch("https://cors-anywhere.herokuapp.com/http://18.185.121.3:5000/", {
+    fetch("https://cors-anywhere.herokuapp.com/" + this.url, {
       mode: "cors"
     })
       .then(res => res.json())
-      .then(res => console.log(res));
+      .then(res => (this.tracks = res));
   }
 };
 </script>
@@ -32,5 +45,6 @@ a {
   background-color: #f3f4f8;
   border-radius: 30px;
   box-shadow: 0px 33px 60px -25px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
 }
 </style>

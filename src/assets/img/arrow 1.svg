@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19 15" width="19" height="15">
+	<style>
+		tspan { white-space:pre }
+		.shp0 { fill: #60558f } 
+	</style>
+	<g id="Playlist">
+		<g id="Back">
+			<path id="arrow 1" class="shp0" d="M1 7.12L7.13 1.99L7.13 4.43C11.91 4.76 15.85 8.3 17 13.01C15.07 10.95 12.38 9.68 9.41 9.68C8.63 9.68 7.87 9.69 7.13 9.81L7.13 12.25L1 7.12Z" />
+		</g>
+	</g>
+</svg>

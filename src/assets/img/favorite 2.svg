@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 15" width="17" height="15">
+	<style>
+		tspan { white-space:pre }
+		.shp0 { fill: #ed5e74 } 
+	</style>
+	<g id="Player">
+		<g id="Favorite">
+			<path id="favorite 2" class="shp0" d="M15.5 5.8C15.43 3.7 13.82 2 11.74 2C10.36 2 9.15 2.76 8.5 3.88C7.85 2.76 6.64 2 5.26 2C3.18 2 1.57 3.7 1.5 5.8C1.35 10.57 8.5 14 8.5 14C8.5 14 15.65 10.57 15.5 5.8Z" />
+		</g>
+	</g>
+</svg>
