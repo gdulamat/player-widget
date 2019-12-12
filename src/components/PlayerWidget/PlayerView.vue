@@ -24,9 +24,9 @@
       </div>
     </div>
     <div class="controls">
-      <div class="controls__loading-bar">
-        <div class="controls__loading-bar-fill">
-          <div class="controls__loading-bar-icon">
+      <div class="controls__progress-bar">
+        <div class="controls__progress-bar-fill">
+          <div class="controls__progress-bar-icon">
             <img :src="audioIcon" />
           </div>
         </div>
@@ -123,10 +123,27 @@ h6 {
 }
 .cover-box {
   height: 340px;
-  background: violet;
+  background: #eeeff5;
   position: relative;
   background-position: center;
   background-size: cover;
+  &::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: #544282;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.26;
+    z-index: 110;
+    pointer-events: none;
+  }
+
+  &:hover .cover-box__top,
+  &:hover .cover-box__bot {
+    opacity: 1;
+  }
   &__top {
     width: 100%;
     height: 65px;
@@ -136,6 +153,9 @@ h6 {
     align-items: center;
     position: absolute;
     top: 0;
+    z-index: 120;
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
   }
   &__icon {
     margin: 0 10px;
@@ -149,6 +169,9 @@ h6 {
     align-items: center;
     position: absolute;
     bottom: 0;
+    z-index: 120;
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
   }
   &__burger {
     position: absolute;
@@ -173,7 +196,7 @@ h6 {
     justify-content: space-between;
     align-items: center;
   }
-  &__loading-bar {
+  &__progress-bar {
     height: 7px;
     background-color: #ed5e74;
     cursor: pointer;
@@ -196,7 +219,9 @@ h6 {
       right: -11px;
       top: 50%;
       transform: translateY(-50%);
+      z-index: 120;
       filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.1));
+      pointer-events: none;
       cursor: pointer;
     }
   }

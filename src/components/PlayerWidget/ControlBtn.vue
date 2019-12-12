@@ -39,5 +39,9 @@ export default {
   &:focus {
     box-shadow: 0px 4px 5px 4px rgba(0, 0, 0, 0.3);
   }
+  & img {
+    min-width: 15px;
+    min-height: 15px;
+  }
 }
 </style>

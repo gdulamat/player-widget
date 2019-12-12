@@ -10,33 +10,40 @@
         />
       </div>
     </div>
-    <ul class="playlist__list">
-      <li
-        class="playlist__item"
-        v-for="(track, i) in tracks"
-        :key="i"
-        :tabindex="open ? 0 : -1"
-        @click="$emit('chooseTrack', i)"
-        @keydown.enter="$emit('chooseTrack', i)"
-      >
-        <div>
-          <p>{{ i }} {{ track.time }} | {{ track.artist }}</p>
-          <h6>{{ track.title }}</h6>
-        </div>
-        <div class="playlist__icons">
-          <control-btn
-            :icon="shareIcon"
-            :bgColor="'transparent'"
-            :size="'22px'"
-          />
-          <control-btn
-            :icon="favoriteIcon"
-            :bgColor="'transparent'"
-            :size="'22px'"
-          />
-        </div>
-      </li>
-    </ul>
+    <div @scroll="setScroll" class="playlist__list-wrapp" ref="listWrapp">
+      <ul ref="list">
+        <li
+          class="playlist__item"
+          v-for="(track, i) in tracks"
+          :key="i"
+          :tabindex="open ? 0 : -1"
+          @click="$emit('chooseTrack', i)"
+          @keydown.enter="$emit('chooseTrack', i)"
+        >
+          <div>
+            <p>{{ i }} {{ track.time }} | {{ track.artist }}</p>
+            <h6>{{ track.title }}</h6>
+          </div>
+          <div class="playlist__icons">
+            <control-btn
+              :icon="shareIcon"
+              :bgColor="'transparent'"
+              :size="'22px'"
+            />
+            <control-btn
+              :icon="favoriteIcon"
+              :bgColor="'transparent'"
+              :size="'22px'"
+            />
+          </div>
+        </li>
+      </ul>
+      <div
+        class="playlist__scrollbar"
+        ref="scroll"
+        :style="{ transform: 'translateY(' + scrollPosition + 'px)' }"
+      ></div>
+    </div>
   </div>
 </template>
 
@@ -57,6 +64,7 @@ export default {
   },
   data() {
     return {
+      scrollPosition: 0,
       backIcon,
       shareIcon,
       favoriteIcon
@@ -65,6 +73,18 @@ export default {
   watch: {
     open() {
       open && this.$refs.playlist.click();
+    }
+  },
+  methods: {
+    setScroll() {
+      let scrollPercent =
+        this.$refs.listWrapp.scrollTop /
+        (this.$refs.list.offsetHeight - this.$refs.listWrapp.offsetHeight);
+      this.scrollPosition = Math.max(
+        0,
+        scrollPercent * this.$refs.listWrapp.offsetHeight -
+          this.$refs.scroll.offsetHeight
+      );
     }
   }
 };
@@ -94,6 +114,19 @@ p {
   z-index: 200;
   transform: translateX(100%);
   transition: transform 0.3s ease-out;
+  &::after {
+    content: "";
+    width: 285px;
+    height: 50px;
+    background: linear-gradient(
+      to bottom,
+      rgba(243, 244, 248, 0) 0%,
+      rgba(243, 244, 248, 1) 100%
+    );
+    position: absolute;
+    bottom: 45px;
+    left: 25px;
+  }
   &.open {
     transform: translateX(0);
   }
@@ -110,10 +143,25 @@ p {
     top: 50%;
     transform: translateY(-50%);
   }
-  &__list {
+  &__list-wrapp {
     height: 370px;
-    padding: 0 25px;
+    padding: 0 50px 0 25px;
+    position: relative;
     overflow-y: auto;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  &__scrollbar {
+    width: 7px;
+    height: 70px;
+    background-color: #2a224d;
+    border-radius: 3px;
+    position: fixed;
+    top: 65px;
+    right: 20px;
+    opacity: 0.1;
   }
   &__item {
     height: 75px;
