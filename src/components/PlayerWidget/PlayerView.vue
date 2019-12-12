@@ -24,6 +24,13 @@
       </div>
     </div>
     <div class="controls">
+      <div class="controls__loading-bar">
+        <div class="controls__loading-bar-fill">
+          <div class="controls__loading-bar-icon">
+            <img :src="audioIcon" />
+          </div>
+        </div>
+      </div>
       <div class="controls__panel">
         <control-btn :icon="shareIcon" />
         <div class="controls__wrapp">
@@ -62,6 +69,7 @@ import pauseIcon from "@/assets/img/pause-icon.svg";
 import playIcon from "@/assets/img/play-icon.svg";
 import favoriteIcon from "@/assets/img/favorite-icon.svg";
 import burgerIcon from "@/assets/img/burger-icon.svg";
+import audioIcon from "@/assets/img/audio-icon.svg";
 
 export default {
   name: "PlayerView",
@@ -83,7 +91,8 @@ export default {
       pauseIcon,
       playIcon,
       favoriteIcon,
-      burgerIcon
+      burgerIcon,
+      audioIcon
     };
   },
   methods: {
@@ -152,7 +161,7 @@ h6 {
   height: 140px;
   background-color: #eeeff5;
   &__panel {
-    margin: 45px 0 0 0;
+    margin: 38px 0 0 0;
     padding: 0 20px;
     display: flex;
     justify-content: space-between;
@@ -163,6 +172,33 @@ h6 {
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+  &__loading-bar {
+    height: 7px;
+    background-color: #ed5e74;
+    cursor: pointer;
+    &-fill {
+      width: 250px;
+      height: 7px;
+      background-color: #ffffff;
+      position: relative;
+      cursor: pointer;
+    }
+    &-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background-color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      right: -11px;
+      top: 50%;
+      transform: translateY(-50%);
+      filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.1));
+      cursor: pointer;
+    }
   }
 }
 </style>

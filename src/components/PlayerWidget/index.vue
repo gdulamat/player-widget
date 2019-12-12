@@ -14,12 +14,14 @@
           : activeTrackIndex++
       "
       @togglePlaylist="showPlaylist = !showPlaylist"
+      ref="player"
     />
     <playlist-view
       :tracks="tracks"
       :open="showPlaylist"
       @togglePlaylist="showPlaylist = !showPlaylist"
       @chooseTrack="chooseTrack"
+      ref="playlist"
     />
   </div>
 </template>

@@ -17,6 +17,7 @@
         :key="i"
         :tabindex="open ? 0 : -1"
         @click="$emit('chooseTrack', i)"
+        @keydown.enter="$emit('chooseTrack', i)"
       >
         <div>
           <p>{{ i }} {{ track.time }} | {{ track.artist }}</p>
@@ -26,12 +27,12 @@
           <control-btn
             :icon="shareIcon"
             :bgColor="'transparent'"
-            :size="'auto'"
+            :size="'22px'"
           />
           <control-btn
             :icon="favoriteIcon"
             :bgColor="'transparent'"
-            :size="'auto'"
+            :size="'22px'"
           />
         </div>
       </li>
@@ -63,7 +64,7 @@ export default {
   },
   watch: {
     open() {
-      open ? this.$refs.playlist.focus() : this.$refs.playlist.blur();
+      open && this.$refs.playlist.click();
     }
   }
 };
