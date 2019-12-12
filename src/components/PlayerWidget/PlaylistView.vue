@@ -17,7 +17,9 @@
           v-for="(track, i) in tracks"
           :key="i"
           :tabindex="open ? 0 : -1"
-          @click="$emit('chooseTrack', i)"
+          @click.self="
+            $event => $emit('chooseTrack', { event: $event, index: i })
+          "
           @keydown.enter="$emit('chooseTrack', i)"
         >
           <div>

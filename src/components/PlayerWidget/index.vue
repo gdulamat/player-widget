@@ -54,8 +54,8 @@ export default {
     }
   },
   methods: {
-    chooseTrack(e) {
-      this.activeTrackIndex = e;
+    chooseTrack(obj) {
+      this.activeTrackIndex = obj.index;
       this.showPlaylist = false;
     }
   },
