@@ -37,7 +37,7 @@ export default {
   transition: box-shadow 0.3s ease-out;
   &:hover,
   &:focus {
-    box-shadow: 0px 4px 5px 4px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 1px 2px 2px rgba(0, 0, 0, 0.2);
   }
   & img {
     min-width: 15px;

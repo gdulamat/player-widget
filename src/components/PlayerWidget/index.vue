@@ -69,6 +69,7 @@ export default {
         this.tracks = [...this.tracks, ...res];
         this.tracks = [...this.tracks, ...res];
       });
+    //.then(res => this.tracks = res);
   }
 };
 </script>

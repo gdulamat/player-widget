@@ -16,11 +16,9 @@
           class="playlist__item"
           v-for="(track, i) in tracks"
           :key="i"
-          :tabindex="open ? 0 : -1"
           @click.self="
             $event => $emit('chooseTrack', { event: $event, index: i })
           "
-          @keydown.enter="$emit('chooseTrack', i)"
         >
           <div>
             <p>{{ i }} {{ track.time }} | {{ track.artist }}</p>
@@ -43,7 +41,10 @@
       <div
         class="playlist__scrollbar"
         ref="scroll"
-        :style="{ transform: 'translateY(' + scrollPosition + 'px)' }"
+        :style="{
+          transform: 'translateY(' + scrollPosition + 'px)',
+          display: displayScroll
+        }"
       ></div>
     </div>
   </div>
@@ -67,15 +68,11 @@ export default {
   data() {
     return {
       scrollPosition: 0,
+      displayScroll: "none",
       backIcon,
       shareIcon,
       favoriteIcon
     };
-  },
-  watch: {
-    open() {
-      open && this.$refs.playlist.click();
-    }
   },
   methods: {
     setScroll() {
@@ -88,6 +85,12 @@ export default {
           this.$refs.scroll.offsetHeight
       );
     }
+  },
+  mounted() {
+    this.displayScroll =
+      this.$refs.list.offsetHeight > this.$refs.listWrapp.offsetHeight
+        ? "block"
+        : "none";
   }
 };
 </script>
