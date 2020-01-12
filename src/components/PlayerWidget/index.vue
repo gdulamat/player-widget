@@ -1,7 +1,7 @@
 <template>
   <transition name="fade">
     <div class="widget-wrapp" v-if="tracks.length">
-      <player-view
+      <player-widget-panel
         :tracks="tracks"
         :activeTrack="activeTrack"
         @prevTrack="
@@ -17,7 +17,7 @@
         @togglePlaylist="showPlaylist = !showPlaylist"
         ref="player"
       />
-      <playlist-view
+      <player-widget-playlist
         :tracks="tracks"
         :open="showPlaylist"
         @togglePlaylist="showPlaylist = !showPlaylist"
@@ -29,21 +29,20 @@
 </template>
 
 <script>
-import PlayerView from "@/components/PlayerWidget/PlayerView.vue";
-import PlaylistView from "@/components/PlayerWidget/PlaylistView.vue";
+import PlayerWidgetPanel from "@/components/PlayerWidget/PlayerWidgetPanel.vue";
+import PlayerWidgetPlaylist from "@/components/PlayerWidget/PlayerWidgetPlaylist.vue";
 
 export default {
   name: "PlayerWidget",
   components: {
-    PlayerView,
-    PlaylistView
+    PlayerWidgetPanel,
+    PlayerWidgetPlaylist
   },
   props: {
-    url: String
+    tracks: Array
   },
   data() {
     return {
-      tracks: [],
       activeTrackIndex: 0,
       showPlaylist: false
     };
@@ -58,18 +57,6 @@ export default {
       this.activeTrackIndex = obj.index;
       this.showPlaylist = false;
     }
-  },
-  created() {
-    fetch("https://cors-anywhere.herokuapp.com/" + this.url, {
-      mode: "cors"
-    })
-      .then(res => res.json())
-      .then(res => {
-        this.tracks = [...this.tracks, ...res];
-        this.tracks = [...this.tracks, ...res];
-        this.tracks = [...this.tracks, ...res];
-      });
-    //.then(res => this.tracks = res);
   }
 };
 </script>

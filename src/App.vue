@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <player-widget :url="endpoint" />
+    <player-widget :tracks="tracks" />
   </div>
 </template>
 
@@ -14,7 +14,51 @@ export default {
   },
   data() {
     return {
-      endpoint: "http://18.185.121.3:5000/"
+      tracks: [
+        {
+          artist: "Tame Impala",
+          image:
+            "https://upload.wikimedia.org/wikipedia/en/9/9b/Tame_Impala_-_Currents.png",
+          time: "5:54",
+          title: "The Less I Know the Better"
+        },
+        {
+          artist: "Tame Impala",
+          image:
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Tame_Impala-3760_%2818222291464%29.jpg/320px-Tame_Impala-3760_%2818222291464%29.jpg",
+          time: "4:46",
+          title: "Eventually"
+        },
+        {
+          artist: "Tame Impala",
+          image:
+            "https://upload.wikimedia.org/wikipedia/en/9/9b/Tame_Impala_-_Currents.png",
+          time: "6:03",
+          title: "New Person, Same Old Mistakes"
+        },
+        {
+          artist: "Tame Impala",
+          image:
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Tame_Impala-3760_%2818222291464%29.jpg/320px-Tame_Impala-3760_%2818222291464%29.jpg",
+          time: "4:20",
+          title: "The Moment"
+        },
+        {
+          artist: "Still Corners",
+          image:
+            "https://upload.wikimedia.org/wikipedia/en/8/89/Strange_Pleasures_album_cover.jpg",
+
+          time: "6:12",
+          title: "The Trip"
+        },
+        {
+          artist: "Still Corners",
+          image:
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Still_Corners_by_Chona_Kasinger.JPG/320px-Still_Corners_by_Chona_Kasinger.JPG",
+          time: "4:51",
+          title: "The Message"
+        }
+      ]
     };
   }
 };

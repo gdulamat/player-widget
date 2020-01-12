@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: "ControlBtn",
+  name: "PlayerWidgetBtn",
   props: {
     icon: String,
     size: {

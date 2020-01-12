@@ -3,7 +3,7 @@
     <div class="playlist__top">
       <h5>Playlist</h5>
       <div class="playlist__back-arrow">
-        <control-btn
+        <player-widget-btn
           :icon="backIcon"
           :bgColor="'transparent'"
           @click.native="$emit('togglePlaylist', '')"
@@ -20,17 +20,17 @@
             $event => $emit('chooseTrack', { event: $event, index: i })
           "
         >
-          <div>
+          <div class="playlist__texts">
             <p>{{ i }} {{ track.time }} | {{ track.artist }}</p>
             <h6>{{ track.title }}</h6>
           </div>
           <div class="playlist__icons">
-            <control-btn
+            <player-widget-btn
               :icon="shareIcon"
               :bgColor="'transparent'"
               :size="'22px'"
             />
-            <control-btn
+            <player-widget-btn
               :icon="favoriteIcon"
               :bgColor="'transparent'"
               :size="'22px'"
@@ -51,15 +51,15 @@
 </template>
 
 <script>
-import ControlBtn from "@/components/PlayerWidget/ControlBtn.vue";
+import PlayerWidgetBtn from "@/components/PlayerWidget/PlayerWidgetBtn.vue";
 import backIcon from "@/assets/img/back-arrow-icon.svg";
 import shareIcon from "@/assets/img/share-icon.svg";
 import favoriteIcon from "@/assets/img/favorite-icon.svg";
 
 export default {
-  name: "PlaylistView",
+  name: "PlayerWidgetPlaylist",
   components: {
-    ControlBtn
+    PlayerWidgetBtn
   },
   props: {
     tracks: Array,
@@ -131,6 +131,7 @@ p {
     position: absolute;
     bottom: 45px;
     left: 25px;
+    pointer-events: none;
   }
   &.open {
     transform: translateX(0);
@@ -157,6 +158,9 @@ p {
     &::-webkit-scrollbar {
       display: none;
     }
+  }
+  &__texts {
+    pointer-events: none;
   }
   &__scrollbar {
     width: 7px;

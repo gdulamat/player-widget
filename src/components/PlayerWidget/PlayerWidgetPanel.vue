@@ -5,11 +5,11 @@
       :style="{ backgroundImage: 'url(' + activeTrack.image + ')' }"
     >
       <div class="cover-box__top">
-        <control-btn :icon="loopIcon" :bgColor="'transparent'" />
-        <control-btn :icon="shuffleIcon" :bgColor="'transparent'" />
-        <control-btn :icon="playAgainIcon" :bgColor="'transparent'" />
+        <player-widget-btn :icon="loopIcon" :bgColor="'transparent'" />
+        <player-widget-btn :icon="shuffleIcon" :bgColor="'transparent'" />
+        <player-widget-btn :icon="playAgainIcon" :bgColor="'transparent'" />
         <div class="cover-box__burger">
-          <control-btn
+          <player-widget-btn
             :icon="burgerIcon"
             :bgColor="'transparent'"
             @click.native="$emit('togglePlaylist', '')"
@@ -32,33 +32,33 @@
         </div>
       </div>
       <div class="controls__panel">
-        <control-btn :icon="shareIcon" />
+        <player-widget-btn :icon="shareIcon" />
         <div class="controls__wrapp">
-          <control-btn
+          <player-widget-btn
             :icon="prevIcon"
             :bgColor="'#60558f'"
             @click.native="$emit('prevTrack', '')"
           />
-          <control-btn
+          <player-widget-btn
             @click.native="handlePlayPause"
             :icon="isPlaying ? playIcon : pauseIcon"
             :size="'50px'"
             :bgColor="'#60558f'"
           />
-          <control-btn
+          <player-widget-btn
             :icon="nextIcon"
             :bgColor="'#60558f'"
             @click.native="$emit('nextTrack', '')"
           />
         </div>
-        <control-btn :icon="favoriteIcon" />
+        <player-widget-btn :icon="favoriteIcon" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import ControlBtn from "@/components/PlayerWidget/ControlBtn.vue";
+import PlayerWidgetBtn from "@/components/PlayerWidget/PlayerWidgetBtn.vue";
 import loopIcon from "@/assets/img/loop-icon.svg";
 import shuffleIcon from "@/assets/img/shuffle-icon.svg";
 import playAgainIcon from "@/assets/img/playagain-icon.svg";
@@ -72,9 +72,9 @@ import burgerIcon from "@/assets/img/burger-icon.svg";
 import audioIcon from "@/assets/img/audio-icon.svg";
 
 export default {
-  name: "PlayerView",
+  name: "PlayerWidgetPanel",
   components: {
-    ControlBtn
+    PlayerWidgetBtn
   },
   props: {
     activeTrack: Object
@@ -139,11 +139,6 @@ h6 {
     z-index: 110;
     pointer-events: none;
   }
-
-  &:hover .cover-box__top,
-  &:hover .cover-box__bot {
-    opacity: 1;
-  }
   &__top {
     width: 100%;
     height: 65px;
@@ -154,7 +149,6 @@ h6 {
     position: absolute;
     top: 0;
     z-index: 120;
-    opacity: 0;
     transition: opacity 0.3s ease-out;
   }
   &__icon {
@@ -170,7 +164,6 @@ h6 {
     position: absolute;
     bottom: 0;
     z-index: 120;
-    opacity: 0;
     transition: opacity 0.3s ease-out;
   }
   &__burger {
